@@ -1,6 +1,8 @@
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 
-const ajv = new Ajv();
+const ajv = new Ajv({ allErrors: true });
+addFormats(ajv);
 
 const validationSchema = {
 	type: 'object',
@@ -20,6 +22,7 @@ const validationSchema = {
 		},
 		email: {
 			type: 'string',
+			format: 'email',
 		},
 		phone: {
 			type: 'string',
