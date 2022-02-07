@@ -1,6 +1,5 @@
 import { Router } from 'express';
 
-// TODO: Create controller
 import {
 	contactController,
 } from './controller';
@@ -8,7 +7,7 @@ import {
 export default function (): Router {
 	const router = Router();
 
-	router.get('/create', contactController);
+	router.post('/create', contactController);
 
 	return router;
 }

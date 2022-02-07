@@ -3,5 +3,6 @@ export type DomainContact = {
 	lastName: string;
 	email: string;
 	phone: string;
+	id?: string;
 	status?: 'created' | 'deleted' | 'valid' | 'invalid';
 };

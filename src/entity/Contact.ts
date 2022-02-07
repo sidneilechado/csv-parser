@@ -1,13 +1,13 @@
 import {
-	Entity, PrimaryGeneratedColumn, Column,
+	Entity, PrimaryColumn, Column,
 } from 'typeorm';
 
 type ContactStatus = 'created' | 'deleted' | 'valid' | 'invalid';
 
 @Entity()
 export default class Contact {
-	@PrimaryGeneratedColumn()
-	id: number;
+	@PrimaryColumn()
+	id: string;
 
 	@Column()
 	firstName: string;
