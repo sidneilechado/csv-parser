@@ -2,7 +2,7 @@ import {
 	Entity, PrimaryGeneratedColumn, Column,
 } from 'typeorm';
 
-type ContactStatus = 'created' | 'deleted' | 'invalid';
+type ContactStatus = 'created' | 'deleted' | 'valid' | 'invalid';
 
 @Entity()
 export default class Contact {
@@ -23,7 +23,7 @@ export default class Contact {
 
 	@Column({
 		type: 'enum',
-		enum: ['created', 'deleted', 'invalid'],
+		enum: ['created', 'deleted', 'valid', 'invalid'],
 		default: 'created',
 	})
 	status: ContactStatus;

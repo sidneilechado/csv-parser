@@ -1,7 +1,7 @@
 import {
-	createContacts,
-} from './createContact';
+	validateAndCreateContacts,
+} from './validateAndCreateContact';
 
 export default {
-	createContacts,
+	validateAndCreateContacts,
 };
