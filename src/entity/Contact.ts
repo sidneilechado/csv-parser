@@ -6,7 +6,9 @@ type ContactStatus = 'created' | 'deleted' | 'valid' | 'invalid';
 
 @Entity()
 export default class Contact {
-	@PrimaryColumn()
+	@PrimaryColumn({
+		unique: true,
+	})
 	id: string;
 
 	@Column()

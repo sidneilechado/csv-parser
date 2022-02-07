@@ -1,13 +1,15 @@
 import { Router } from 'express';
 
 import {
-	contactController,
+	createContact,
+	listContacts,
 } from './controller';
 
 export default function (): Router {
 	const router = Router();
 
-	router.post('/create', contactController);
+	router.get('/list', listContacts);
+	router.post('/create', createContact);
 
 	return router;
 }

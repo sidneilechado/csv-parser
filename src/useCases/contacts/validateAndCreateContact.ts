@@ -25,6 +25,7 @@ export async function validateAndCreateContacts(contactList: DomainContact[]): P
 					...contact,
 					id: hashedId,
 					status: 'valid',
+					log: null,
 				};
 			});
 		}
