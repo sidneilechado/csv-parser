@@ -18,11 +18,14 @@
 		},
 		"_moduleAliases": {
 				"@entities": "src/entity",
-				"@root": "."
+				"@useCases": "src/useCases",
+				"@": "."
 		},
 		"dependencies": {
+				"ajv": "^8.10.0",
 				"axios": "^0.25.0",
 				"cors": "2.8.5",
+				"csv-reader": "^1.0.8",
 				"express": "4.17.1",
 				"express-async-errors": "3.1.1",
 				"pg": "8.4.0",

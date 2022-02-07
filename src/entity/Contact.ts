@@ -2,8 +2,10 @@ import {
 	Entity, PrimaryGeneratedColumn, Column,
 } from 'typeorm';
 
+type ContactStatus = 'created' | 'deleted' | 'invalid';
+
 @Entity()
-export default class User {
+export default class Contact {
 	@PrimaryGeneratedColumn()
 	id: number;
 
@@ -18,4 +20,11 @@ export default class User {
 
 	@Column()
 	phone: string;
+
+	@Column({
+		type: 'enum',
+		enum: ['created', 'deleted', 'invalid'],
+		default: 'created',
+	})
+	status: ContactStatus;
 }
