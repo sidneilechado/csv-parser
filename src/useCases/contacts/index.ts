@@ -2,6 +2,6 @@ import {
 	validateAndCreateContacts,
 } from './validateAndCreateContact';
 
-export default {
+export {
 	validateAndCreateContacts,
 };

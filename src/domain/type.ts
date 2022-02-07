@@ -5,4 +5,5 @@ export type DomainContact = {
 	phone: string;
 	id?: string;
 	status?: 'created' | 'deleted' | 'valid' | 'invalid';
+	log?: string;
 };

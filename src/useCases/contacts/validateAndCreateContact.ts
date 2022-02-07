@@ -1,8 +1,7 @@
 import { getRepository } from 'typeorm';
-import md5 from 'md5';
 import Contact from '../../entity/Contact';
 import { DomainContact } from '../../domain/type';
-import { validator } from '../../utils/validationSchema';
+import { validator, hashId, reduceErrors } from '../../utils';
 
 export async function validateAndCreateContacts(contactList: DomainContact[]): Promise<Contact[]> {
 	const contactRepository = getRepository(Contact);
@@ -11,12 +10,22 @@ export async function validateAndCreateContacts(contactList: DomainContact[]): P
 		if (contactList.length) {
 			contactList = contactList.map((contact) => {
 				const isValid = validator(contact);
+				const hashedId = hashId(contact.firstName, contact.lastName);
 
 				if (!isValid) {
-					contact = { ...contact, status: 'invalid', id: 'abc' };
+					// Currently cannot use spread to create object here
+					return Object.assign(contact, {
+						status: 'invalid',
+						id: hashedId,
+						log: reduceErrors(validator.errors),
+					});
 				}
 
-				return { ...contact, id: md5(`${contact.firstName}${contact.lastName}`) };
+				return {
+					...contact,
+					id: hashedId,
+					status: 'valid',
+				};
 			});
 		}
 

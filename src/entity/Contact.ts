@@ -27,4 +27,9 @@ export default class Contact {
 		default: 'created',
 	})
 	status: ContactStatus;
+
+	@Column({
+		nullable: true,
+	})
+	log: string;
 }
