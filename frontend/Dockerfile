@@ -2,7 +2,7 @@ FROM node:14.6.0 AS base
 
 ENV LANG C.UTF-8
 
-WORKDIR /backend/usr/app
+WORKDIR /frontend/usr/app
 
 ###############################################################################
 
@@ -16,8 +16,8 @@ RUN npm set progress=false && npm config set depth 0 && npm ci
 
 FROM base AS release
 
-COPY --from=dependencies /backend/usr/app/node_modules ./node_modules
+COPY --from=dependencies /frontend/usr/app/node_modules ./node_modules
 COPY . .
 
-EXPOSE 3000
-CMD [ "npm", "start" ]
+EXPOSE 8080
+CMD [ "npm", "run", "serve" ]
