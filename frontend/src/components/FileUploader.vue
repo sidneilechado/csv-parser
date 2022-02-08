@@ -1,5 +1,5 @@
 <template>
-      <input ref="file" v-on:change="handleFileUpload()"  type="file">
+  <input ref="file" v-on:change="handleFileUpload()" type="file">
 </template>
 <script>
 
