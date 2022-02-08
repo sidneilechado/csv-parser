@@ -1,9 +1,24 @@
 version: "3.9"
 services:
+    sql:
+      image: postgres:latest
+      hostname: sql
+      ports:
+        - "5432:5432"
+      environment:
+        POSTGRES_USER: postgres
+        POSTGRES_DB: postgres
+        POSTGRES_PASSWORD: postgres
+      volumes:
+        - /var/lib/postgres
+
     vue-app:
         build: ./frontend
         command: npm run serve
         hostname: vue-app
+        depends_on:
+          - sql
+          - node-app
         ports:
           - "8080:8080"
         volumes:
@@ -16,6 +31,8 @@ services:
         build: ./backend
         command: npm run dev
         hostname: node-app
+        depends_on:
+          - sql
         ports:
           - "3000:3000"
         volumes:
