@@ -16,17 +16,21 @@ const validationSchema = {
 	properties: {
 		firstName: {
 			type: 'string',
+			minLength: 1,
 		},
 		lastName: {
 			type: 'string',
+			minLength: 1,
 		},
 		email: {
 			type: 'string',
+			minLength: 1,
 			format: 'email',
 		},
 		phone: {
 			type: 'string',
-			pattern: '^((([0-9]{3}))|[0-9]{3})[s-]?[0-9]{3}[s-]?[0-9]{4}$',
+			minLength: 1,
+			// pattern: '^((([0-9]{3}))|[0-9]{3})[s-]?[0-9]{3}[s-]?[0-9]{4}$',
 		},
 	},
 };

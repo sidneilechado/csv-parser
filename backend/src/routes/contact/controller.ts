@@ -4,7 +4,7 @@ import { getContatListByStatus, validateAndCreateContacts } from '../../useCases
 
 export async function createContact(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {
-		const contactList = csvToContact(req.body.initialList);
+		const contactList = csvToContact(req.body.contactList);
 		const createdContactList = await validateAndCreateContacts(contactList);
 
 		res.status(200).json(createdContactList);

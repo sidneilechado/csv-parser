@@ -1,13 +1,14 @@
-import { DomainContact } from './type';
+import { DomainContact, RawContact } from './type';
 import { capitalizeFirstLetter } from '../utils';
 
-export const csvToContact = (contacts: string[][]): DomainContact[] => {
+export const csvToContact = (contacts: RawContact[]): DomainContact[] => {
+	console.log(contacts);
 	if (contacts.length) {
-		return contacts.map((contact): DomainContact => ({
-			firstName: capitalizeFirstLetter(contact[0]),
-			lastName: capitalizeFirstLetter(contact[1]),
-			phone: contact[2],
-			email: contact[3],
+		return contacts.map((contact: RawContact): DomainContact => ({
+			firstName: capitalizeFirstLetter(contact.first_name),
+			lastName: capitalizeFirstLetter(contact.last_name),
+			phone: contact.phone,
+			email: contact.email,
 		}));
 	}
 };

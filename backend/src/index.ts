@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 import cors from 'cors';
 import express, { Request, Response, NextFunction } from 'express';
+import multer from 'multer';
 import { createConnection } from 'typeorm';
 import api from './routes';
 import 'express-async-errors';
@@ -11,6 +12,11 @@ createConnection().then(async () => {
 }).catch((error) => console.error(error));
 
 const app = express();
+const upload = multer();
+
+// for parsing multipart/form-data
+app.use(upload.array());
+app.use(express.static('public'));
 
 app.use(express.json());
 app.use(cors());
