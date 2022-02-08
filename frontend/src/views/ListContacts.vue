@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Table/>
+    <Table status=""/>
   </div>
 </template>
 
@@ -10,6 +10,11 @@ import Table from '@/components/Table.vue';
 
 export default defineComponent({
   name: 'ListContacts',
+  data() {
+    return {
+      status: 'valid',
+    };
+  },
   components: {
     Table,
   },

@@ -1,10 +1,10 @@
 {
    "type": "postgres",
-   "host": "kesavan.db.elephantsql.com",
+   "host": "localhost",
    "port": 5432,
-   "username": "iftxqdlz",
-   "password": "QsithAwH6gZziq2SXQ0Mee9tDUPQ7Ivx",
-   "database": "iftxqdlz",
+   "username": "postgres",
+   "password": "postgres",
+   "database": "postgres",
    "synchronize": true,
    "logging": false,
    "entities": [

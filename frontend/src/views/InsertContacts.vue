@@ -1,43 +1,47 @@
 <template>
   <div class="wrapper">
     <text>Upload a csv with contacts here</text><br>
-    <input ref="file" v-on:change="sendFile" type="file">
+    <input
+      type="file"
+      accept=".csv"
+      @change="handleFileUpload($event)"
+    >
     <button v-on:click="sendFile">Send file</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
+import axios from 'axios';
 
 export default defineComponent({
+  // tslint:disable
   name: 'InsertContacts',
+  data() {
+    return {
+      file: '',
+      content: [],
+    };
+  },
   methods: {
+    // @ts-ignore
+    handleFileUpload(event) {
+      // eslint-disable-next-line
+      this.file = event.target.files[0];
+    },
     async sendFile() {
       // @ts-ignore
-      console.log(this.$refs.files.files);
-      const dataForm = new FormData();
-      // for (const file of this.$refs.files.files) {
-      //   dataForm.append('file', file);
-      // }
-      // const res = await fetch('http://localhost:3000/upload', {
-      //   method: 'POST',
-      //   body: dataForm,
-      // });
-      // const data = await res.json();
-    },
-    setup() {
-      const file = ref(null);
-      const handleFileUpload = async () => {
-      // debugger;
-      // @ts-ignore
-        console.log('selected file', file.value.files);
-      // Upload to server
-      };
-
-      return {
-        handleFileUpload,
-        file,
-      };
+      this.$papa.parse(this.file, {
+        header: true,
+        skipEmptyLines: true,
+        // @ts-ignore
+        async complete(results) {
+        // @ts-ignore
+          await axios.post('http://localhost:3000/api/contact/create', {
+            contactList: results.data,
+          });
+        },
+      });
     },
   },
 });
